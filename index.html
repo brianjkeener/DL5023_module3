@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teaching & Learning in the Digital Age</title>
+    
+    <!-- Premium Typography: 'Outfit' Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
             --accent: #e74c3c;
             --light: #ecf0f1;
-            --text: #333;
+            --text: #1e293b; /* Darker, richer text */
             --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.5);
         }
 
         * {
@@ -21,21 +29,76 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: 'Outfit', sans-serif; /* Applied Premium Font */
+            line-height: 1.7;
             color: var(--text);
-            background-color: #f8fafc;
+            background-color: #f0f4f8;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Background Orbs */
+        .ambient-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: linear-gradient(to right, #a78bfa, #818cf8);
+        }
+
+        .orb-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: linear-gradient(to right, #f472b6, #fb7185);
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            top: 40%;
+            left: 40%;
+            width: 30vw;
+            height: 30vw;
+            background: linear-gradient(to right, #34d399, #2dd4bf);
+            opacity: 0.4;
+            animation-duration: 25s;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 50px); }
         }
 
         /* Header & Canvas */
         header {
-            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            background: var(--primary);
+            background: linear-gradient(135deg, #1e293b, #0f172a); /* Darker, sleeker header */
             color: white;
-            padding: 4rem 1rem;
+            padding: 6rem 1rem 5rem;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         #network-canvas {
@@ -45,37 +108,43 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            opacity: 0.6;
+            opacity: 0.4;
         }
 
         .header-content {
             position: relative;
             z-index: 2;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
             font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         header p {
-            font-size: 1.25rem;
-            opacity: 0.95;
+            font-size: 1.35rem;
+            opacity: 0.9;
             max-width: 700px;
             margin: 0 auto;
+            font-weight: 300;
         }
 
-        /* Navigation */
+        /* Glassmorphism Navigation */
         nav {
-            background: white;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px); /* The "Frosted Glass" effect */
+            -webkit-backdrop-filter: blur(12px);
             padding: 1rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
         }
 
         nav ul {
@@ -83,7 +152,7 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 40px;
         }
 
         nav a {
@@ -91,33 +160,50 @@
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
         }
 
         nav a:hover {
             color: var(--secondary);
+            background: rgba(255,255,255,0.5);
+            transform: translateY(-1px);
         }
 
         /* Main Content */
         .container {
             max-width: 1200px;
-            margin: 3rem auto;
+            margin: 4rem auto;
             padding: 0 1.5rem;
         }
 
+        /* Scroll Reveal Animation Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother bezier */
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .intro-context {
-            background: white;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
             padding: 3rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            margin-bottom: 4rem;
-            border-left: 8px solid var(--secondary);
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -5px rgba(0,0,0,0.05);
+            margin-bottom: 5rem;
+            border: 1px solid white;
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .intro-text {
@@ -133,6 +219,7 @@
             max-width: 100%;
             height: auto;
             max-height: 200px;
+            filter: drop-shadow(0 10px 15px rgba(52, 152, 219, 0.3));
         }
 
         .section-title {
@@ -140,114 +227,130 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin: 4rem 0 2.5rem;
+            margin: 5rem 0 3rem;
             color: var(--primary);
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
         
         .section-title svg {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             fill: var(--primary);
         }
 
-        /* Grid Layout for Cards */
+        /* Grid Layout */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 3rem;
+            perspective: 1000px;
         }
 
-        /* Resource Cards */
+        /* Resource Cards - 3D Enabled & Premium Style */
         .card {
-            background: white;
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.85); /* Slightly transparent */
+            backdrop-filter: blur(5px); /* Subtle blur behind card */
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
             display: flex;
             flex-direction: column;
-            border: 1px solid #f0f0f0;
+            border: 1px solid rgba(255,255,255,0.6);
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+            will-change: transform;
+            height: 100%; /* Uniform height */
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        /* Glare Effect */
+        .card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(125deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .card:hover::after {
+            opacity: 1;
         }
 
         /* Card Image Styling */
         .card-img-wrapper {
             width: 100%;
-            height: 200px;
+            height: 220px;
             overflow: hidden;
             position: relative;
             background: #eee;
+            transition: transform 0.3s ease;
         }
 
         .card-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover .card-img-wrapper img {
-            transform: scale(1.05);
+            pointer-events: none; 
         }
 
-        /* Specific Styles for People Avatars (Circles) */
+        /* Avatar Styling */
         .card.podcast-type .card-img-wrapper, 
         .card.influencer-type .card-img-wrapper,
         .card.article-type .card-img-wrapper {
-            height: 120px;
+            height: 140px;
             background: transparent;
             display: flex;
-            align-items: flex-end; /* Push circle to bottom overlapping header */
+            align-items: flex-end; 
             padding-left: 1.5rem;
-            margin-bottom: -40px; /* Overlap effect */
+            margin-bottom: -50px; 
             z-index: 10;
         }
 
         .card.podcast-type .card-img-wrapper img, 
         .card.influencer-type .card-img-wrapper img,
         .card.article-type .card-img-wrapper img {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 5px solid white;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
             object-fit: cover;
             background: white;
         }
         
         .card-header {
-            padding: 1.5rem;
-            padding-top: 2rem; /* Extra space if avatar overlaps */
+            padding: 1.5rem 2rem;
+            padding-top: 2rem;
             position: relative;
         }
 
-        /* Adjust padding for cards with overlapping avatars */
         .card.podcast-type .card-header,
         .card.influencer-type .card-header,
         .card.article-type .card-header {
-            padding-top: 3rem; 
+            padding-top: 3.5rem; 
         }
 
-        /* Color Coding */
+        /* Sophisticated Color Tags */
         .card.video-type .card-header { background: #fff; border-bottom: 2px solid #fee2e2; }
-        .card.podcast-type .card-header { background: #f3e8ff; color: #6b21a8; }
-        .card.article-type .card-header { background: #dcfce7; color: #166534; }
-        .card.influencer-type .card-header { background: #fef9c3; color: #854d0e; }
+        .card.podcast-type .card-header { background: linear-gradient(to right, #f3e8ff, #fff); color: #6b21a8; }
+        .card.article-type .card-header { background: linear-gradient(to right, #dcfce7, #fff); color: #166534; }
+        .card.influencer-type .card-header { background: linear-gradient(to right, #fef9c3, #fff); color: #854d0e; }
 
         .card-header h3 {
-            font-size: 1.35rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            line-height: 1.3;
+            line-height: 1.2;
         }
 
         .card-body {
-            padding: 1.5rem;
+            padding: 1.5rem 2rem 2rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -255,46 +358,62 @@
         }
 
         .card-body p {
-            margin-bottom: 1.5rem;
-            color: #4b5563;
+            margin-bottom: 2rem;
+            color: #475569;
             font-size: 1.05rem;
+            font-weight: 400;
         }
 
+        /* Modern Button */
         .btn {
             display: inline-block;
-            background: white;
+            background: transparent;
             color: var(--primary);
             border: 2px solid var(--primary);
-            padding: 0.6rem 1.2rem;
+            padding: 0.8rem 1.5rem;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
+            border-radius: 50px; /* Pill shape */
+            font-weight: 700;
+            letter-spacing: 0.5px;
             transition: all 0.3s;
             text-align: center;
             align-self: flex-start;
+            transform: translateZ(20px); 
+            font-size: 0.9rem;
+            text-transform: uppercase;
         }
 
         .btn:hover {
             background: var(--primary);
             color: white;
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
         }
 
         footer {
-            background: var(--primary);
+            background: #1e293b;
             color: white;
             text-align: center;
-            padding: 3rem;
-            margin-top: 5rem;
+            padding: 4rem;
+            margin-top: 6rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .intro-context { flex-direction: column; text-align: center; }
+            header h1 { font-size: 2.5rem; }
+            .intro-context { flex-direction: column; text-align: center; gap: 2rem; }
             .intro-context { border-left: none; border-top: 8px solid var(--secondary); }
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Ambient Background Elements -->
+    <div class="ambient-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
 
     <header>
         <canvas id="network-canvas"></canvas>
@@ -315,11 +434,12 @@
 
     <div class="container">
 
-        <section class="intro-context">
+        <!-- Intro Section with Reveal Class -->
+        <section class="intro-context reveal">
             <div class="intro-text">
                 <h2>About This Resource</h2>
                 <p>
-                    As educators in the 21st century, developing <strong>Technological Pedagogical Knowledge (TPK)</strong> is essential. Drawing on the ISTE Standards and Project-Based Learning (PBL) principles, this collection helps teachers navigate the digital landscape to enhance student creativity and design digital-age assessments.
+                    As educators in the 21st century, developing <strong>Technological Pedagogical Knowledge (TPK)</strong> is not just a requirement but a necessity for student success. Drawing on the ISTE Standards and Project-Based Learning (PBL) principles, this curated collection serves as a guide for teachers navigating the complex digital landscape. Use these resources to enhance student creativity, design authentic digital-age assessments, and foster a collaborative environment where technology bridges the gap between content and real-world application.
                 </p>
             </div>
             <div class="intro-graphic">
@@ -343,9 +463,9 @@
 
         <!-- VIDEOS SECTION -->
         <div id="videos">
-            <h2 class="section-title">Videos</h2>
+            <h2 class="section-title reveal">Videos</h2>
             <div class="grid">
-                <article class="card video-type">
+                <article class="card video-type reveal">
                     <div class="card-img-wrapper">
                         <!-- Actual YouTube Thumbnail for Tim Mousel -->
                         <img src="https://img.youtube.com/vi/-Bdr6fzbztg/hqdefault.jpg" alt="Tim Mousel TEDx Talk">
@@ -354,12 +474,13 @@
                         <h3>AI Will Teach Us All | TEDx</h3>
                     </div>
                     <div class="card-body">
-                        <p><strong>Speaker:</strong> Tim Mousel<br>A compelling TEDx talk on the future of higher education in the AI era. Mousel discusses transforming mentorship rather than replacing teachers.</p>
+                        <p><strong>Speaker:</strong> Tim Mousel<br>
+                        This compelling TEDx talk explores the future of higher education in the context of Artificial Intelligence, arguing that AI will transform rather than replace human teaching. Mousel provides specific examples of how educators can leverage these tools to meet diverse student needs, shifting the focus from content delivery to deeper mentorship. It is an essential watch for any teacher looking to understand their evolving role in a technology-driven classroom.</p>
                         <a href="https://www.youtube.com/watch?v=-Bdr6fzbztg" target="_blank" class="btn">Watch Video</a>
                     </div>
                 </article>
 
-                <article class="card video-type">
+                <article class="card video-type reveal">
                     <div class="card-img-wrapper">
                          <!-- Actual YouTube Thumbnail for Aaron Makelky -->
                         <img src="https://img.youtube.com/vi/dNzWNYWXEWg/hqdefault.jpg" alt="Teaching in Age of AI">
@@ -368,7 +489,8 @@
                         <h3>Teaching in the Age of AI</h3>
                     </div>
                     <div class="card-body">
-                        <p><strong>Source:</strong> Wyoming Chronicle<br>High school teacher Aaron Makelky discusses practical realities of Generative AI in K-12 and why educators should embrace it.</p>
+                        <p><strong>Source:</strong> Wyoming Chronicle<br>
+                        High school teacher Aaron Makelky sits down to discuss the practical realities of Generative AI in the K-12 classroom, arguing that banning these tools is a disservice to students. He explains why educators should embrace AI to make learning more relevant and offers insights on how to "be the teacher AI can't replace." This interview is perfect for educators seeking a grounded, realistic perspective on integrating cutting-edge tech.</p>
                         <a href="https://www.youtube.com/watch?v=dNzWNYWXEWg" target="_blank" class="btn">Watch Video</a>
                     </div>
                 </article>
@@ -377,9 +499,9 @@
 
         <!-- PODCASTS SECTION -->
         <div id="podcasts">
-            <h2 class="section-title">Podcasts</h2>
+            <h2 class="section-title reveal">Podcasts</h2>
             <div class="grid">
-                <article class="card podcast-type">
+                <article class="card podcast-type reveal">
                     <div class="card-img-wrapper">
                         <!-- Jennifer Gonzalez from Cult of Pedagogy -->
                         <img src="https://www.edutopia.org/sites/default/files/styles/profile_image/public/profile/Jennifer%20Gonzalez%20Headshot%202023.png?itok=8Wj-5Z8_" onerror="this.src='https://ui-avatars.com/api/?name=Jennifer+Gonzalez&background=6b21a8&color=fff&size=128'" alt="Jennifer Gonzalez">
@@ -388,12 +510,13 @@
                         <h3>The Cult of Pedagogy</h3>
                     </div>
                     <div class="card-body">
-                        <p><strong>Host:</strong> Jennifer Gonzalez<br>A gold standard for educators, covering strategies, classroom management, and psychology.</p>
+                        <p><strong>Host:</strong> Jennifer Gonzalez<br>
+                        "The Cult of Pedagogy" is widely considered a gold standard resource for educators, covering everything from instructional strategies to classroom management and psychology. Gonzalez frequently explores how technology intersects with the social dynamics of school, offering "trade secrets" that help teachers implement digital tools without losing the human connection. It serves as an excellent weekly professional development session for teachers at any level.</p>
                         <a href="https://www.cultofpedagogy.com/pod/" target="_blank" class="btn">Listen Now</a>
                     </div>
                 </article>
 
-                <article class="card podcast-type">
+                <article class="card podcast-type reveal">
                     <div class="card-img-wrapper">
                         <!-- Chris Nesi from House of EdTech -->
                         <img src="https://pbs.twimg.com/profile_images/1500486010724835334/7b1b-9_6_400x400.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Chris+Nesi&background=6b21a8&color=fff&size=128'" alt="Chris Nesi">
@@ -402,7 +525,8 @@
                         <h3>House of #EdTech</h3>
                     </div>
                     <div class="card-body">
-                        <p><strong>Host:</strong> Chris Nesi<br>Explores how technology changes teaching. Introduces new apps and platforms for 21st-century learning objectives.</p>
+                        <p><strong>Host:</strong> Chris Nesi<br>
+                        This podcast specifically explores how technology is changing the way teachers teach and the impact it has on education outcomes. Each episode introduces new apps, platforms, and practical tech resources that can be immediately integrated into lesson plans to support 21st-century learning objectives. Nesi's interviews with industry leaders provide a forward-looking perspective on where ed-tech is heading next.</p>
                         <a href="https://www.chrisnesi.com/" target="_blank" class="btn">Listen Now</a>
                     </div>
                 </article>
@@ -411,9 +535,9 @@
 
         <!-- ARTICLES SECTION -->
         <div id="articles">
-            <h2 class="section-title">Articles</h2>
+            <h2 class="section-title reveal">Articles</h2>
             <div class="grid">
-                <article class="card article-type">
+                <article class="card article-type reveal">
                     <div class="card-img-wrapper">
                         <img src="https://ui-avatars.com/api/?name=PL+NU&background=166534&color=fff&size=128" alt="PLNU">
                     </div>
@@ -421,12 +545,13 @@
                         <h3>5 Strategies to Engage Students</h3>
                     </div>
                     <div class="card-body">
-                        <p><strong>Source:</strong> Point Loma Nazarene University<br>Outlines actionable strategies like gamification and collaborative learning.</p>
+                        <p><strong>Source:</strong> Point Loma Nazarene University<br>
+                        This article outlines actionable strategies for the modern classroom, such as gamification and collaborative learning, to combat student disengagement. It aligns closely with the concept of "digital-age assessment" by focusing on how to increase student motivation through interactive digital means rather than passive consumption. Teachers will find practical steps here to shift their classroom culture from traditional instruction to active digital participation.</p>
                         <a href="https://www.pointloma.edu/resources/education/5-strategies-engage-students-digital-age" target="_blank" class="btn">Read Article</a>
                     </div>
                 </article>
 
-                <article class="card article-type">
+                <article class="card article-type reveal">
                     <div class="card-img-wrapper">
                         <img src="https://ui-avatars.com/api/?name=Am+Eng&background=166534&color=fff&size=128" alt="American English">
                     </div>
@@ -434,7 +559,8 @@
                         <h3>Digital Age Pedagogy</h3>
                     </div>
                     <div class="card-body">
-                        <p><strong>Source:</strong> American English (State Dept)<br>A comprehensive guide on flexible digital tools for face-to-face, hybrid, or online interactions.</p>
+                        <p><strong>Source:</strong> American English (State Dept)<br>
+                        This comprehensive guide is designed for teachers transitioning to digital-heavy environments, offering advice on using tools that work for face-to-face, hybrid, or fully online interactions. It emphasizes flexibility and adaptation, helping teachers leverage their existing expertise while adopting new digital platforms. The article is particularly useful for finding resources that are robust enough for diverse classroom settings and infrastructure levels.</p>
                         <a href="https://americanenglish.state.gov/files/ae/resource_files/etf_58_3_pg02-09.pdf" target="_blank" class="btn">Read Article</a>
                     </div>
                 </article>
@@ -443,9 +569,9 @@
 
         <!-- INFLUENCERS SECTION -->
         <div id="influencers">
-            <h2 class="section-title">Education Influencers</h2>
+            <h2 class="section-title reveal">Education Influencers</h2>
             <div class="grid">
-                <article class="card influencer-type">
+                <article class="card influencer-type reveal">
                     <div class="card-img-wrapper">
                          <!-- Kasey Bell from Shake Up Learning -->
                         <img src="https://shakeuplearning.com/wp-content/uploads/2019/01/Kasey-Bell-Profile-Pic-Circle-300x300.png" onerror="this.src='https://ui-avatars.com/api/?name=Kasey+Bell&background=854d0e&color=fff&size=128'" alt="Kasey Bell">
@@ -454,12 +580,13 @@
                         <h3>Kasey Bell</h3>
                     </div>
                     <div class="card-body">
-                        <p><strong>Platform:</strong> Shake Up Learning<br>Former middle school teacher providing tips on using AI to "shake up" learning.</p>
+                        <p><strong>Platform:</strong> Shake Up Learning<br>
+                        A former middle school teacher turned digital learning coach, Kasey Bell is a leading voice in the Google for Education space. She provides practical tips on using AI and digital tools to "shake up" learning, moving away from static worksheets toward dynamic, student-centered experiences. Her content is ideal for teachers looking to create more interactive and choice-driven assignments.</p>
                         <a href="https://shakeuplearning.com/" target="_blank" class="btn">Visit Website</a>
                     </div>
                 </article>
 
-                <article class="card influencer-type">
+                <article class="card influencer-type reveal">
                     <div class="card-img-wrapper">
                          <!-- Vicki Davis from Cool Cat Teacher -->
                         <img src="https://www.coolcatteacher.com/wp-content/uploads/2013/09/vicki-davis-cool-cat-teacher-bio-pic.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Vicki+Davis&background=854d0e&color=fff&size=128'" alt="Vicki Davis">
@@ -468,7 +595,8 @@
                         <h3>Vicki Davis</h3>
                     </div>
                     <div class="card-body">
-                        <p><strong>Platform:</strong> The Cool Cat Teacher<br>Shares practical advice on ed-tech integration, focusing on tools that enhance teacher-student relationships.</p>
+                        <p><strong>Platform:</strong> The Cool Cat Teacher<br>
+                        Vicki Davis is a full-time IT director and teacher known for her blog and "The 10-Minute Teacher" podcast, which offers bite-sized professional development. She consistently shares practical advice on ed-tech integration, focusing on tools that save time and enhance the relationship between teachers and students. Following her provides a steady stream of "Monday-ready" ideas for the digital classroom.</p>
                         <a href="https://www.coolcatteacher.com/" target="_blank" class="btn">Visit Website</a>
                     </div>
                 </article>
@@ -482,6 +610,7 @@
     </footer>
 
     <script>
+        // --- Network Canvas Animation ---
         const canvas = document.getElementById('network-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -489,7 +618,6 @@
 
         let particles = [];
         const numberOfParticles = 80;
-
         const mouse = { x: null, y: null, radius: 150 }
 
         window.addEventListener('mousemove', function(event) {
@@ -581,6 +709,57 @@
 
         init();
         animate();
+
+        // --- Scroll Reveal & 3D Tilt ---
+
+        // 1. Scroll Reveal Observer
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1, 
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+
+        // 2. 3D Tilt Effect
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const xPct = (x / rect.width - 0.5) * 2; 
+                const yPct = (y / rect.height - 0.5) * 2;
+
+                const rotationX = yPct * -10; 
+                const rotationY = xPct * 10;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg) scale3d(1.05, 1.05, 1.05)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .card:hover::after {
+                opacity: 1;
+            }
+        `;
+        document.head.appendChild(style);
+
     </script>
 </body>
 </html>
