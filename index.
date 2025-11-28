@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching & Learning in the Digital Age</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --text: #333;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        nav {
+            background: var(--secondary);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .intro-context {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent);
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            color: var(--primary);
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .section-wrapper {
+            text-align: center;
+        }
+
+        /* Grid Layout for Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Resource Cards */
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background: var(--light);
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .card-header h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-body p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+
+        /* Categories Specific Colors (Optional accenting) */
+        #videos .card-header { border-top: 4px solid #e74c3c; }
+        #podcasts .card-header { border-top: 4px solid #9b59b6; }
+        #articles .card-header { border-top: 4px solid #2ecc71; }
+        #influencers .card-header { border-top: 4px solid #f1c40f; }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            nav ul { flex-direction: column; align-items: center; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Teaching & Learning in the Digital Age</h1>
+        <p>Curated recommendations for educators integrating technology, TPK, and 21st-century skills.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#podcasts">Podcasts</a></li>
+            <li><a href="#articles">Articles</a></li>
+            <li><a href="#influencers">Influencers</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- Introduction based on Course Readings -->
+        <section class="intro-context">
+            <h2>About This Resource</h2>
+            <p style="margin-top: 10px;">
+                As educators in the 21st century, developing <strong>Technological Pedagogical Knowledge (TPK)</strong> is essential for effective instruction. Drawing on the principles of the ISTE Standards and Project-Based Learning (PBL), this collection aims to support teachers in navigating the digital landscape. These resources were selected to help you enhance student creativity, design digital-age assessments, and foster a future-ready classroom environment.
+            </p>
+        </section>
+
+        <!-- VIDEOS SECTION -->
+        <div class="section-wrapper">
+            <h2 id="videos" class="section-title">Videos</h2>
+        </div>
+        <div class="grid">
+            <article class="card">
+                <div class="card-header">
+                    <h3>AI Will Teach Us All | TEDx</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Speaker:</strong> Tim Mousel<br>
+                    This compelling TEDx talk explores the future of higher education in the context of Artificial Intelligence. Mousel discusses how AI can transform rather than replace human teaching, emphasizing how educators can leverage these tools to meet diverse student needs and shift the focus toward deeper mentorship and guidance.</p>
+                    <a href="https://www.youtube.com/watch?v=-Bdr6fzbztg" target="_blank" class="btn">Watch Video</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-header">
+                    <h3>Teaching in the Age of AI</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Source:</strong> Wyoming Chronicle<br>
+                    High school teacher Aaron Makelky sits down to discuss the practical realities of Generative AI in the K-12 classroom. He argues that teachers should not fear technology but embrace it to make learning more relevant, offering specific insights on how to prepare students for a future where AI is ubiquitous.</p>
+                    <a href="https://www.youtube.com/watch?v=dNzWNYWXEWg" target="_blank" class="btn">Watch Video</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- PODCASTS SECTION -->
+        <div class="section-wrapper">
+            <h2 id="podcasts" class="section-title">Podcasts</h2>
+        </div>
+        <div class="grid">
+            <article class="card">
+                <div class="card-header">
+                    <h3>The Cult of Pedagogy</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Host:</strong> Jennifer Gonzalez<br>
+                    This podcast is a gold standard for educators, covering teaching strategies, classroom management, and education reform. Gonzalez frequently interviews experts on psychological dynamics in schools and offers "trade secrets" that help teachers implement digital tools effectively without losing the human connection.</p>
+                    <a href="https://www.cultofpedagogy.com/pod/" target="_blank" class="btn">Listen Now</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-header">
+                    <h3>House of #EdTech</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Host:</strong> Chris Nesi<br>
+                    Chris Nesi explores how technology is changing the way teachers teach and the impact it has on education. Each episode introduces new apps, platforms, and practical tech resources that you can immediately integrate into your classroom to support 21st-century learning objectives.</p>
+                    <a href="https://www.chrisnesi.com/" target="_blank" class="btn">Listen Now</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- ARTICLES SECTION -->
+        <div class="section-wrapper">
+            <h2 id="articles" class="section-title">Articles</h2>
+        </div>
+        <div class="grid">
+            <article class="card">
+                <div class="card-header">
+                    <h3>5 Strategies to Engage Students</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Source:</strong> Point Loma Nazarene University<br>
+                    This article outlines actionable strategies for the modern classroom, such as gamification and collaborative learning. It aligns well with the concept of "digital-age assessment" by focusing on how to increase student motivation and participation through interactive digital means rather than passive consumption.</p>
+                    <a href="https://www.pointloma.edu/resources/education/5-strategies-engage-students-digital-age" target="_blank" class="btn">Read Article</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-header">
+                    <h3>Digital Age Pedagogy</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Source:</strong> American English (State Dept)<br>
+                    A comprehensive guide for teachers transitioning to digital-heavy environments. It discusses specific digital tools and websites that are flexible enough for face-to-face, hybrid, or fully online interactions, helping teachers adapt their expertise to the current technological landscape.</p>
+                    <a href="https://americanenglish.state.gov/files/ae/resource_files/etf_58_3_pg02-09.pdf" target="_blank" class="btn">Read Article</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- INFLUENCERS SECTION -->
+        <div class="section-wrapper">
+            <h2 id="influencers" class="section-title">Education Influencers</h2>
+        </div>
+        <div class="grid">
+            <article class="card">
+                <div class="card-header">
+                    <h3>Kasey Bell</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Platform:</strong> Shake Up Learning<br>
+                    A former middle school teacher turned digital learning coach, Kasey Bell is a leading voice in the Google for Education space. She provides practical tips on using AI and digital tools to "shake up" learning, moving away from static worksheets toward dynamic, student-centered experiences.</p>
+                    <a href="https://shakeuplearning.com/" target="_blank" class="btn">Visit Website</a>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="card-header">
+                    <h3>Vicki Davis</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Platform:</strong> The Cool Cat Teacher<br>
+                    Vicki Davis is a full-time IT director and teacher known for her blog and "The 10-Minute Teacher" podcast. She consistently shares practical advice on ed-tech integration, focusing on tools that save time and enhance the relationship between teachers and students.</p>
+                    <a href="https://www.coolcatteacher.com/" target="_blank" class="btn">Visit Website</a>
+                </div>
+            </article>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Digital Recommendations Module. Created for Module 3 Application.</p>
+    </footer>
+
+</body>
+</html>
